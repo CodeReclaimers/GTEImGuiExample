@@ -23,9 +23,24 @@ public:
     virtual bool OnWindowsMessage(HWND handle, UINT message,
         WPARAM wParam, LPARAM lParam, LRESULT& result) override;
 
-    inline std::shared_ptr<gte::GraphicsEngine> const& GetEngine() const
+    std::shared_ptr<gte::GraphicsEngine> const& GetEngine() const
     {
         return mEngine;
+    }
+
+    virtual void StartImGuiFrame()
+    {
+        // Start the Dear ImGui frame.
+        ImGui_ImplDX11_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+        ImGui::NewFrame();
+    }
+
+    virtual void RenderImGui()
+    {
+        // Render UI.
+        ImGui::Render();
+        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     }
 };
 

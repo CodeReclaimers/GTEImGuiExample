@@ -47,10 +47,7 @@ void BlendedTerrainWindow3::OnIdle()
     mEngine->Draw(mSkyDome);
     mEngine->Draw(8, GetYSize() - 8, { 0.0f, 0.0f, 0.0f, 1.0f }, mTimer.GetFPS());
 
-    // Start the Dear ImGui frame
-    ImGui_ImplDX11_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
+    StartImGuiFrame();
 
     bool wireframe = (mEngine->GetRasterizerState() == mWireState);
 
@@ -73,9 +70,7 @@ void BlendedTerrainWindow3::OnIdle()
     }
     mEngine->SetClearColor(clearColor);
 
-    // Render UI.
-    ImGui::Render();
-    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+    RenderImGui();
 
     mEngine->DisplayColorBuffer(0);
 
