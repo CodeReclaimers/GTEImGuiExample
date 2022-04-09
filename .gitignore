@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio cache
+.vs
+
+# Build output
+_Output
+
+# Visual Studio per-user settings
+*.user
+
+# ImGui window configuration
+imgui.ini
